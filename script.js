@@ -107,10 +107,12 @@ function update(location) {
 }
 
 function goTown() {
+  initButtonStyle();
   update(locations[0]);
 }
 
 function goStore() {
+  button2.style.textDecoration = checkBestWeapon() ? "line-through" : "none";
   update(locations[1]);
 }
 
@@ -130,34 +132,43 @@ function buyHealth() {
 }
 
 function buyWeapon() {
-  if (currentWeapon < weapons.length - 1) {
-    if (gold >= 30) {
-      gold -= 30;
-      currentWeapon++;
-      goldText.innerText = gold;
-      let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "You now have a " + newWeapon + ".";
-      inventory.push(newWeapon);
-      text.innerText += " In your inventory you have: " + inventory;
-    } else {
-      text.innerText = "You do not have enough gold to buy a weapon.";
-    }
+  if(inventory.length <= 1 && weapons[currentWeapon].power >= 100) {
+    text.innerText = "You already have the most powerful weapon and sold all your previous weapons!";
   } else {
-    text.innerText = "You already have the most powerful weapon!";
-    button2.innerText = "Sell weapon for 15 gold";
-    button2.onclick = sellWeapon;
+    if (currentWeapon < weapons.length - 1) {
+      if (gold >= 30) {
+        gold -= 30;
+        currentWeapon++;
+        goldText.innerText = gold;
+        let newWeapon = weapons[currentWeapon].name;
+        text.innerText = "You now have a " + newWeapon + ".";
+        inventory.push(newWeapon);
+        text.innerText += " In your inventory you have: " + inventory;
+      } else {
+        text.innerText = "You do not have enough gold to buy a weapon.";
+      }
+    } else {
+      text.innerText = "You already have the most powerful weapon!";
+      button2.innerText = "Sell weapon for 15 gold";
+      button2.onclick = sellWeapon;
+    }
   }
 }
 
 function sellWeapon() {
-  if (inventory.length > 1) {
-    gold += 15;
-    goldText.innerText = gold;
-    let currentWeapon = inventory.shift();
-    text.innerText = "You sold a " + currentWeapon + ".";
-    text.innerText += " In your inventory you have: " + inventory;
+  if(checkBestWeapon()) {
+    text.innerText = "You already sold all your previous weapons";
+    button2.style.textDecoration = "line-through";
   } else {
-    text.innerText = "Don't sell your only weapon!";
+    if (inventory.length > 1) {
+      gold += 15;
+      goldText.innerText = gold;
+      let currentWeapon = inventory.shift();
+      text.innerText = "You sold a " + currentWeapon + ".";
+      text.innerText += " In your inventory you have: " + inventory;
+    } else {
+      text.innerText = "Don't sell your only weapon!";
+    }
   }
 }
 
@@ -289,4 +300,18 @@ function pick(guess) {
       lose();
     }
   }
+}
+
+// Check if the current Weapon is the more powerfull
+function checkBestWeapon() {
+  if(inventory.length <= 1 && weapons[currentWeapon].power >= 100) {
+    return true;
+  }
+}
+
+// Resets text decoration for button1, button2, and button3 to "none"
+function initButtonStyle() {
+  button1.style.textDecoration = "none";
+  button2.style.textDecoration = "none";
+  button3.style.textDecoration = "none";
 }
