@@ -2,6 +2,8 @@
 
 "Role Playing Game" from FreeCodeCamp "JavaScript Algorithms and Data Structures" course
 
+<a href='https://quentin-rey.github.io/fcc-role-playing-game/' target="_blank"><img alt='GitHub' src='https://img.shields.io/badge/play_the game-100000?style=for-the-badge&logo=GitHub&logoColor=FFFEFE&labelColor=4eaed9&color=043ea7'/></a>
+
 ## Base Code
 
 The course and the base code are available on [freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/#learn-basic-javascript-by-building-a-role-playing-game).
