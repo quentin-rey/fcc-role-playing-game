@@ -16,12 +16,13 @@ Course summary:
 
 ### UI/UX
 
-- [ ] better UI
+- [x] better UI
 - [ ] adding images
+- [ ] better text
 
 ### Game Improvements
 
-...
+- [x] better weapon buy/sell functions
 
 ### New Features
 
