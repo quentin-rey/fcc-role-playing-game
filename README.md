@@ -24,7 +24,7 @@ Course summary:
 
 - [x] better weapon buy/sell functions
 
-### New Features
+### Features Ideas
 
 - [ ] more monsters
 - [ ] more weapons
